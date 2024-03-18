@@ -7,7 +7,7 @@ import React from "react";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="flex w-screen">
+      <div className="flex w-screen gap-3">
         <MonthCard month={"January"} ></MonthCard>
         <MonthCard month={"February"} ></MonthCard>
         <MonthCard month={"March"} ></MonthCard>
@@ -33,24 +33,23 @@ function ButtonUsage() {
 
 function FamilyMember({ name }: { name: string }) {
   return (
-    <Card className="flex flex-col items-center justify-between p-24">
-      <div className="flex items-center">
-        <Avatar className="w-20 h-20 rounded-full"></Avatar>
-        <span>{name}</span>
-        <CountDown></CountDown>
-      </div>
-    </Card>
+    <Avatar className="w-400">{name.charAt(0).toUpperCase()}</Avatar>
   )
 }
 
 function MonthCard({ month }: { month: string }) {
   return (
-    <div className="max-w-screen-xl w-1/12">
-      <span>{month}</span>
-      <li>
+    <div className="flex flex-col items-center justify-center">
+      <div className="w-50 rounded-lg bg-blue-200 p-4 text-center">
+        {month}
+      </div>
+      <div className="flex flex-col gap-4">
         <FamilyMember name={"John Doe"}></FamilyMember>
+        <hr className="border-white border-l-2"/>
         <FamilyMember name={"John Doe"}></FamilyMember>
-      </li>
+        <hr className="border-white border-l-2" />
+        <FamilyMember name={"John Doe"}></FamilyMember>
+      </div>
     </div>
   );
 }
