@@ -1,56 +1,54 @@
-"use client"
+"use client";
 
-import { Avatar, Card } from "@mui/material";
+import { Avatar, Card, Stack } from "@mui/material";
 import Button from "@mui/material/Button";
 import React from "react";
 
 export default function Home() {
+  let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="flex w-screen gap-3">
-        <MonthCard month={"January"} ></MonthCard>
-        <MonthCard month={"February"} ></MonthCard>
-        <MonthCard month={"March"} ></MonthCard>
-        <MonthCard month={"April"} ></MonthCard>
-        <MonthCard month={"May"} ></MonthCard>
-        <MonthCard month={"June"} ></MonthCard>
-        <MonthCard month={"July"} ></MonthCard>
-        <MonthCard month={"August"} ></MonthCard>
-        <MonthCard month={"September"} ></MonthCard>
-        <MonthCard month={"October"} ></MonthCard>
-        <MonthCard month={"November"} ></MonthCard>
-        <MonthCard month={"December"} ></MonthCard>
-      </div>
+      <Stack direction={"row"} spacing={2}>
+        <MonthCard month={months[0]}></MonthCard>
+        <MonthCard month={months[1]}></MonthCard>
+        <MonthCard month={months[2]}></MonthCard>
+        <MonthCard month={months[3]}></MonthCard>
+        <MonthCard month={months[4]}></MonthCard>
+        <MonthCard month={months[5]}></MonthCard>
+        <MonthCard month={months[6]}></MonthCard>
+        <MonthCard month={months[7]}></MonthCard>
+        <MonthCard month={months[8]}></MonthCard>
+        <MonthCard month={months[9]}></MonthCard>
+        <MonthCard month={months[10]}></MonthCard>
+        <MonthCard month={months[11]}></MonthCard>
+      </Stack>
     </main>
   );
 }
 
 function ButtonUsage() {
-  return (
-    <Button variant="outlined">Hello World</Button>
-  )
+  return <Button variant="outlined">Hello World</Button>;
 }
 
-function FamilyMember({ name }: { name: string }) {
+function FamilyMember(props: { name: string, birth_month: number, birth_day:number}) {
   return (
-    <Avatar className="w-400">{name.charAt(0).toUpperCase()}</Avatar>
-  )
+  <Stack direction={"row"}>
+  <Avatar className="w-400">{props.name.charAt(0).toUpperCase()}</Avatar>
+  Birthday:{props.birth_month}-{props.birth_day}
+  </Stack>
+  );
 }
 
 function MonthCard({ month }: { month: string }) {
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="w-50 rounded-lg bg-blue-200 p-4 text-center">
-        {month}
-      </div>
-      <div className="flex flex-col gap-4">
-        <FamilyMember name={"John Doe"}></FamilyMember>
-        <hr className="border-white border-l-2"/>
-        <FamilyMember name={"John Doe"}></FamilyMember>
-        <hr className="border-white border-l-2" />
-        <FamilyMember name={"John Doe"}></FamilyMember>
-      </div>
-    </div>
+    <Stack direction="column" spacing="10">
+      <Button variant="contained" disabled>{month}</Button>
+      <FamilyMember name="JK" birth_month={1} birth_day={2} ></FamilyMember>
+      <hr className="border-white border-l-2" />
+      <FamilyMember name={"AP"} birth_month={2} birth_day={3}></FamilyMember>
+      <hr className="border-white border-l-2" />
+      <FamilyMember name={"CT"} birth_month={3} birth_day={4}></FamilyMember>
+    </Stack>
   );
 }
 
@@ -77,7 +75,12 @@ class Birthday {
   private day: number = 0;
   private isLunar: boolean = false;
 
-  constructor(year: number, month: number, day: number, isLunar: boolean = false) {
+  constructor(
+    year: number,
+    month: number,
+    day: number,
+    isLunar: boolean = false
+  ) {
     this.year = year;
     this.month = month;
     this.day = day;
@@ -85,7 +88,10 @@ class Birthday {
   }
 
   // 检查用户输入的时间是否有效
-  public static CheckValid(year: number, month: number, day: number, isLunar: boolean) {
-
-  }
+  public static CheckValid(
+    year: number,
+    month: number,
+    day: number,
+    isLunar: boolean
+  ) {}
 }
